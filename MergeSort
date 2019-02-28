@@ -1,0 +1,129 @@
+import java.io.*;
+
+import java.util.*;
+
+import java.lang.*;
+
+ 
+
+ 
+
+class MergeSort {
+
+ 
+
+      static public void Organizar(int [] lista, int izq, int pivote, int der)
+
+      {
+
+        int [] temp = new int[25];
+
+        int i, izq_fin, numele, pos;
+
+    
+
+        izq_fin = (pivote - 1);
+
+        pos = izq;
+
+        numele = (der - izq + 1);
+
+    
+
+        while ((izq <= izq_fin) && (pivote <= der))
+
+        {
+
+            if (lista[izq] <= lista[pivote])
+
+                temp[pos++] = lista[izq++];
+
+            else
+
+                temp[pos++] = lista[pivote++];
+
+        }
+
+    
+
+        while (izq <= izq_fin)
+
+            temp[pos++] = lista[izq++];
+
+ 
+
+        while (pivote <= der)
+
+            temp[pos++] = lista[pivote++];
+
+ 
+
+        for (i = 0; i < numele; i++)
+
+        {
+
+            lista[der] = temp[der];
+
+            der--;
+
+        }
+
+    }
+
+ 
+
+    static public void MergeSort(int [] lista, int izq, int der)
+
+    {
+
+      int pivote;
+
+    
+
+      if (der > izq)
+
+      {
+
+        pivote = (der + izq) / 2;
+
+        MergeSort(lista, izq, pivote);
+
+        MergeSort(lista, (pivote + 1), der);
+
+    
+
+        Organizar(lista, izq, (pivote+1), der);
+
+      }
+
+    }
+
+ 
+
+ 
+
+    public static void main(String[] args)
+
+      {
+
+        int[] lista = { 3, 8, 7, 5, 2, 1, 9, 6, 4 };
+
+        int n = 9;
+
+ 
+
+        System.out.println("MergeSort By Recursive Method");
+
+ 
+
+        MergeSort(lista, 0, n - 1);
+
+        for (int i = 0; i < 9; i++)
+
+            System.out.println(lista[i]);
+
+       
+
+    }
+
+}
